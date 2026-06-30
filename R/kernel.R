@@ -1,9 +1,9 @@
-#'@title Internal helper function
+#'@title Gibbs Sampling Kernel for stEM Algorithm
 #'
-#' @description Internal function used by autoGDINA.stEM.
+#' @description Performs Gibbs sampling updates of attribute profiles and item parameters within the stochastic EM algorithm.
 #'
 #' @param dat A required \eqn{N \times J} data matrix of N examinees to J items. Missing values are currently not allowed.
-#' @param Q A required binary item and attribute association matrix.A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.
+#' @param Q A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.
 #' @param J The number of items.
 #' @param reduced.profiles A list of reduced attribute profiles for each item.
 #' @param alpha The initial latent attribute profiles.
@@ -21,15 +21,6 @@
 #'
 #' @author Wenchao Ma, The University of Minnesota, \email{wma@umn.edu}
 #'
-#' @examples
-#'\dontrun{
-#' dat <- realdata_ECPE$dat
-#' Q <- realdata_ECPE$Q
-#' fit <- GDINA(dat = dat, Q = Q, model = "GDINA")
-#' fit
-#' CA(fit)
-#'
-#' }
 #'
 
 

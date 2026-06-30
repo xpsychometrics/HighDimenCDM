@@ -15,19 +15,7 @@ batch.var(plist, n)
 A vector of batch variance estimates.
 }
 \description{
-Internal function used by autoGDINA.stEM.
-}
-\examples{
-\dontrun{
-dat <- realdata_ECPE$dat
-Q <- realdata_ECPE$Q
-fit <- GDINA(dat = dat, Q = Q, model = "GDINA")
-fit
-CA(fit)
-
-
-
-}
+Computes variance of parameter estimates across batches in the stochastic EM algorithm.
 }
 \author{
 Wenchao Ma, The University of Minnesota, \email{wma@umn.edu}

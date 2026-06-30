@@ -1,20 +1,14 @@
-Package: stEM3
+Package: HighDimenCDM
 Type: Package
-Title: The Stochastic EM Algorithm for High Dimensional Cognitive Diagnosis Models
+Title: Stochastic EM Algorithm for High-Dimensional Cognitive Diagnosis Models
 Version: 0.1.0
-Authors@R: c(
-    person(
-      "Jane", "Doe",
-      email = "jane@example.com",
-      role = c("aut", "cre")
-    )
-  )
-Description: A set of functions for estimating cognitive diagnosis models using a stochastic EM algorithm. The package provides parameter estimation and classification procedures based on the implementation described in the paper A Stochastic Expectation-Maximization Algorithm for High Dimensional  Cognitive Diagnosis Models.
+Authors@R: c(person(given = "Yuxuan", family = "Mei", role = c("aut", "cre"),email = "mei00060@umn.edu"))
+Description: Provides stochastic expectation-maximization (stEM) algorithms for estimating high-dimensional cognitive diagnosis models. The package implements stochastic EM algorithms for cognitive diagnosis models with a large number of attributes. It includes estimation functions and example datasets for model fitting and analysis.
 License: GPL-3
-LazyData: true
+LazyData: TRUE
 Depends: 
     R (>= 3.5)
-Imports: GDINA, coda, Rcpp (>= 1.1.0)
+Imports: coda, GDINA, Rcpp (>= 0.12.1)
 Suggests: 
 LinkingTo: Rcpp, RcppArmadillo
 Encoding: UTF-8

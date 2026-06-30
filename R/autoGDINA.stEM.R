@@ -1,11 +1,12 @@
+utils::globalVariables("AlphaPattern")
 #'@title Stochastic EM Algorithm for High-Dimensional Cognitive Diagnosis Models
 #'
-#' @description This function estimates the model parameters of CDM using the stochastic EM algorithm with sequential Gibbs sampling.
+#' @description Estimates model parameters for cognitive diagnosis models using the stochastic expectation-maximization (stEM) algorithm with sequential Gibbs sampling.
 #'
-#' @param dat A required \eqn{N \times J} data matrix of N examinees to J items. Missing values are currently not allowed.
-#' @param Q A required binary item and attribute association matrix.A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.
-#' @param item.parm A initial item parameter estimates.
-#' @param maxitr The maximum iterations allowed.
+#' @param dat A required \eqn{N \times J} data matrix of N examinees to J items. Missing values are not currently supported.
+#' @param Q A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.
+#' @param item.parm Optional initial item parameter estimates.
+#' @param maxitr Maximum number of iterations.
 #' @param eps1 A positive convergence criterion used during the burn-in stage of the stochastic EM algorithm.
 #' @param eps2 A positive convergence criterion used after the burn-in.
 #' @param frac1 Proportion of the first part of the Markov chain used in the Geweke diagnostic.
@@ -14,30 +15,28 @@
 #' @return a list with elements
 #' \describe{
 #' \item{catprob.parm}{estimated item category response probabilities}
-#' \item{ip}{estimated final parameter obtained by averaging from each batches}
+#' \item{ip}{estimated final item parameters obtained by averaging across retained batches}
 #' \item{alpha}{estimated attribute mastery profiles}
-#' \item{alpha.list}{latent attribute profile estimates from each batches}
+#' \item{alpha.list}{attribute mastery profile estimates from each retained batch}
 #' \item{total.number.of.batch}{total number of retained batches used for estimation}
 #' \item{final.chain}{final length of the Markov chain}
 #' \item{burn.in.size}{the number of burn-in iterations discarded}
-#' \item{plist}{estimated item parameters from each batch}
+#' \item{plist}{estimated item parameters from each retained batch}
 #' }
 #'
 #' @author Wenchao Ma, The University of Minnesota, \email{wma@umn.edu}
 #'
 #' @examples
 #'\dontrun{
-#' dat <- realdata_ECPE$dat
-#' Q <- realdata_ECPE$Q
-#' fit <- GDINA(dat = dat, Q = Q, model = "GDINA")
+#' dat <- IPIP$dat
+#' Q <- IPIP$Q
+#' fit <- autoGDINA.stEM(dat = dat, Q = Q)
 #' fit
-#' CA(fit)
 #' }
 #'@export
 
 autoGDINA.stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
                            eps1=2,eps2=0.4,frac1=.1,frac2=.5){
-  Rcpp::sourceCpp("seqGibbs.cpp")
 
   dat0 <- as.matrix(dat)
   Q0 <- as.matrix(Q)
@@ -80,23 +79,18 @@ autoGDINA.stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
 
 
   npar <- sum(Lj)
-  ###########################
-  #
-  # Warm-up phase - to be discarded
-  #
-  ###########################
+  ## ------------------------------------------------------------
+  ## Warm-up phase - to be discarded
+  ## ------------------------------------------------------------
 
   x <- kernel(dat,Q,J,reduced.profiles,alpha,20,ip.only=TRUE)
 
   item.parm <- x$item.parm
   alpha <- x$alpha # most recent alpha sample
 
-  ###########################
-  #
-  # burn-in phase
-  #
-  ###########################
-
+  ## ------------------------------------------------------------
+  ## Burn-in phase (discarded samples)
+  ## ------------------------------------------------------------
 
   alist <- plist <- list()
 
@@ -121,7 +115,6 @@ autoGDINA.stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
 
   }
 
-  #terminates burn-in?
   mcmc.par <- coda::mcmc(t(Reduce(cbind,plist)))
   z <- coda::geweke.diag(mcmc.par,frac1 = frac1,frac2 = frac2)$z
   z <- z[!is.na(z)]
@@ -159,11 +152,10 @@ autoGDINA.stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
   cat("\n Total burn-in iterations = ",burn.in.size)
 
 
-  ###########################
-  #
-  # determining chain length
-  #
-  ###########################
+  ## ------------------------------------------------------------
+  ## determining chain length
+  ## ------------------------------------------------------------
+
   n <- M #M=10 batch kept
   d.hat <- batch.var(plist,n=n)
   cat("\nAfter burn-in phase:")

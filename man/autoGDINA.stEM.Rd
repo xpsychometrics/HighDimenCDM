@@ -16,13 +16,13 @@ autoGDINA.stEM(
 )
 }
 \arguments{
-\item{dat}{A required \eqn{N \times J} data matrix of N examinees to J items. Missing values are currently not allowed.}
+\item{dat}{A required \eqn{N \times J} data matrix of N examinees to J items. Missing values are not currently supported.}
 
-\item{Q}{A required binary item and attribute association matrix.A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.}
+\item{Q}{A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.}
 
-\item{item.parm}{A initial item parameter estimates.}
+\item{item.parm}{Optional initial item parameter estimates.}
 
-\item{maxitr}{The maximum iterations allowed.}
+\item{maxitr}{Maximum number of iterations.}
 
 \item{eps1}{A positive convergence criterion used during the burn-in stage of the stochastic EM algorithm.}
 
@@ -36,25 +36,24 @@ autoGDINA.stEM(
 a list with elements
 \describe{
 \item{catprob.parm}{estimated item category response probabilities}
-\item{ip}{estimated final parameter obtained by averaging from each batches}
+\item{ip}{estimated final item parameters obtained by averaging across retained batches}
 \item{alpha}{estimated attribute mastery profiles}
-\item{alpha.list}{latent attribute profile estimates from each batches}
+\item{alpha.list}{attribute mastery profile estimates from each retained batch}
 \item{total.number.of.batch}{total number of retained batches used for estimation}
 \item{final.chain}{final length of the Markov chain}
 \item{burn.in.size}{the number of burn-in iterations discarded}
-\item{plist}{estimated item parameters from each batch}
+\item{plist}{estimated item parameters from each retained batch}
 }
 }
 \description{
-This function estimates the model parameters of CDM using the stochastic EM algorithm with sequential Gibbs sampling.
+Estimates model parameters for cognitive diagnosis models using the stochastic expectation-maximization (stEM) algorithm with sequential Gibbs sampling.
 }
 \examples{
 \dontrun{
-dat <- realdata_ECPE$dat
-Q <- realdata_ECPE$Q
-fit <- GDINA(dat = dat, Q = Q, model = "GDINA")
+dat <- IPIP$dat
+Q <- IPIP$Q
+fit <- autoGDINA.stEM(dat = dat, Q = Q)
 fit
-CA(fit)
 }
 }
 \author{

@@ -2,14 +2,14 @@
 % Please edit documentation in R/kernel.R
 \name{kernel}
 \alias{kernel}
-\title{Internal helper function}
+\title{Gibbs Sampling Kernel for stEM Algorithm}
 \usage{
 kernel(dat, Q, J, reduced.profiles, alpha, B, ip.only = TRUE)
 }
 \arguments{
 \item{dat}{A required \eqn{N \times J} data matrix of N examinees to J items. Missing values are currently not allowed.}
 
-\item{Q}{A required binary item and attribute association matrix.A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.}
+\item{Q}{A required \eqn{J \times K} item-attribute association matrix, where J is the number of items and K is the number of attributes.}
 
 \item{J}{The number of items.}
 
@@ -31,18 +31,7 @@ a list with elements
 }
 }
 \description{
-Internal function used by autoGDINA.stEM.
-}
-\examples{
-\dontrun{
-dat <- realdata_ECPE$dat
-Q <- realdata_ECPE$Q
-fit <- GDINA(dat = dat, Q = Q, model = "GDINA")
-fit
-CA(fit)
-
-}
-
+Performs Gibbs sampling updates of attribute profiles and item parameters within the stochastic EM algorithm.
 }
 \author{
 Wenchao Ma, The University of Minnesota, \email{wma@umn.edu}

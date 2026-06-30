@@ -1,0 +1,25 @@
+---
+output: github_document
+---
+
+# HighDimenCDM: Stochastic EM Algorithms for High-Dimensional Cognitive Diagnosis Models
+
+## How to cite the package
+
+This package accompanies the manuscript:
+
+## Features
+
+-   Implements stochastic expectation-maximization algorithms for high-dimensional cognitive diagnosis models
+-   Efficient Gibbs sampling for attribute estimation
+-   Supports binary response cognitive diagnosis models
+-   Includes two real-data examples: IPIP, Tan2023
+
+## Installation
+
+Install the development version of **HighDimenCDM** from GitHub using the `devtools` package.
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+#devtools::install_github("...")
+```

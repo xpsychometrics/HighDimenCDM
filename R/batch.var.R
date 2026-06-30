@@ -1,6 +1,6 @@
 #'@title Batch variance calculation
 #'
-#' @description Internal function used by autoGDINA.stEM.
+#' @description Computes variance of parameter estimates across batches in the stochastic EM algorithm.
 #'
 #' @param plist A list of parameter estimates collected across batches.
 #' @param n Number of batches
@@ -9,17 +9,6 @@
 #'
 #' @author Wenchao Ma, The University of Minnesota, \email{wma@umn.edu}
 #'
-#' @examples
-#'\dontrun{
-#' dat <- realdata_ECPE$dat
-#' Q <- realdata_ECPE$Q
-#' fit <- GDINA(dat = dat, Q = Q, model = "GDINA")
-#' fit
-#' CA(fit)
-#'
-#'
-#'
-#' }
 
 
 batch.var <- function(plist,n){

@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // seqGibbs
 arma::umat seqGibbs(arma::umat& alpha, const arma::mat& Q, const arma::mat& ip, const arma::mat& data, const arma::field<arma::umat>& rp);
-RcppExport SEXP _stEM3_seqGibbs(SEXP alphaSEXP, SEXP QSEXP, SEXP ipSEXP, SEXP dataSEXP, SEXP rpSEXP) {
+RcppExport SEXP _HighDimenCDM_seqGibbs(SEXP alphaSEXP, SEXP QSEXP, SEXP ipSEXP, SEXP dataSEXP, SEXP rpSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -28,7 +28,7 @@ END_RCPP
 }
 // seqGibbs2
 void seqGibbs2(arma::umat& alpha, const arma::mat& Q, const arma::mat& ip, const arma::mat& data, const arma::field<arma::umat>& rp);
-RcppExport SEXP _stEM3_seqGibbs2(SEXP alphaSEXP, SEXP QSEXP, SEXP ipSEXP, SEXP dataSEXP, SEXP rpSEXP) {
+RcppExport SEXP _HighDimenCDM_seqGibbs2(SEXP alphaSEXP, SEXP QSEXP, SEXP ipSEXP, SEXP dataSEXP, SEXP rpSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::umat& >::type alpha(alphaSEXP);
@@ -42,7 +42,7 @@ END_RCPP
 }
 // aggregatebyCol
 arma::mat aggregatebyCol(arma::mat& x, arma::vec g);
-RcppExport SEXP _stEM3_aggregatebyCol(SEXP xSEXP, SEXP gSEXP) {
+RcppExport SEXP _HighDimenCDM_aggregatebyCol(SEXP xSEXP, SEXP gSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -54,7 +54,7 @@ END_RCPP
 }
 // inplaceadd
 void inplaceadd(arma::mat& x);
-RcppExport SEXP _stEM3_inplaceadd(SEXP xSEXP) {
+RcppExport SEXP _HighDimenCDM_inplaceadd(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat& >::type x(xSEXP);
@@ -64,7 +64,7 @@ END_RCPP
 }
 // fieldtest
 arma::mat fieldtest(arma::field<arma::mat>& x);
-RcppExport SEXP _stEM3_fieldtest(SEXP xSEXP) {
+RcppExport SEXP _HighDimenCDM_fieldtest(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -75,15 +75,15 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_stEM3_seqGibbs", (DL_FUNC) &_stEM3_seqGibbs, 5},
-    {"_stEM3_seqGibbs2", (DL_FUNC) &_stEM3_seqGibbs2, 5},
-    {"_stEM3_aggregatebyCol", (DL_FUNC) &_stEM3_aggregatebyCol, 2},
-    {"_stEM3_inplaceadd", (DL_FUNC) &_stEM3_inplaceadd, 1},
-    {"_stEM3_fieldtest", (DL_FUNC) &_stEM3_fieldtest, 1},
+    {"_HighDimenCDM_seqGibbs", (DL_FUNC) &_HighDimenCDM_seqGibbs, 5},
+    {"_HighDimenCDM_seqGibbs2", (DL_FUNC) &_HighDimenCDM_seqGibbs2, 5},
+    {"_HighDimenCDM_aggregatebyCol", (DL_FUNC) &_HighDimenCDM_aggregatebyCol, 2},
+    {"_HighDimenCDM_inplaceadd", (DL_FUNC) &_HighDimenCDM_inplaceadd, 1},
+    {"_HighDimenCDM_fieldtest", (DL_FUNC) &_HighDimenCDM_fieldtest, 1},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_stEM3(DllInfo *dll) {
+RcppExport void R_init_HighDimenCDM(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

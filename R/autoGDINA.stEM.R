@@ -24,18 +24,17 @@ utils::globalVariables("AlphaPattern")
 #' \item{plist}{estimated item parameters from each retained batch}
 #' }
 #'
-#' @author Wenchao Ma, The University of Minnesota, \email{wma@umn.edu}
 #'
 #' @examples
 #'\dontrun{
-#' dat <- IPIP$dat
-#' Q <- IPIP$Q
-#' fit <- autoGDINA.stEM(dat = dat, Q = Q)
+#' dat <- simN2000K20$data
+#' Q <- simN2000K20$Q
+#' fit <- stEM(dat = dat, Q = Q)
 #' fit
 #' }
 #'@export
 
-autoGDINA.stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
+stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
                            eps1=2,eps2=0.4,frac1=.1,frac2=.5){
 
   dat0 <- as.matrix(dat)
@@ -69,7 +68,7 @@ autoGDINA.stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
     prior <- rep(1/L, L)
     logprior <- log(prior)
     parloc <- GDINA::LC2LG(Q=Q0)
-    estep <- GDINA:::LikNR(as.matrix(GDINA:::l2m(item.parm)),
+    estep <- gdina_lik_nr(as.matrix(gdina_l2m(item.parm)),
                            as.matrix(dat0), as.matrix(logprior), rep(1,N),
                            as.matrix(parloc), rep(1,N), FALSE)
 

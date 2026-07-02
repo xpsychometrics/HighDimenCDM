@@ -20,7 +20,7 @@
 #' \dontrun{
 #' data(Tan2023)
 #' str(Tan2023)
-#' fit <- autoGDINA.stEM(
+#' fit <- stEM(
 #'   dat = Tan2023$dat,
 #'   Q = Tan2023$Q
 #'   )

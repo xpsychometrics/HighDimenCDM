@@ -1,17 +1,27 @@
 
-# HighDimenCDM: Stochastic EM Algorithms for High-Dimensional Cognitive Diagnosis Models
+# HighDimenCDM: High-Dimensional Cognitive Diagnosis Models
 
-## How to cite the package
+To cite this paper:
 
-This package accompanies the manuscript:
+- Ma, W., Wang, K., & Xu, G. (Accepted). Parameter estimation of
+  cognitive diagnosis models with stochastic EM algorithm.
+  Behaviormetrika.
+
+- Mei, Y., Ma, W., Wang, K., & Xu, G. (2026) HighDimenCDM:
+  High-Dimensional Cognitive Diagnosis Models. R package.
 
 ## Features
 
+This package aims to provide tools for high-dimensional cognitive
+diagnosis models. Currently, it supports the following features:
+
 - Implements stochastic expectation-maximization algorithms for
   high-dimensional cognitive diagnosis models
+
 - Efficient Gibbs sampling for attribute estimation
-- Supports binary response cognitive diagnosis models
-- Includes two real-data examples: IPIP, Tan2023
+
+- Supports binary response cognitive diagnosis models with binary
+  attributes
 
 ## Installation
 
@@ -20,5 +30,5 @@ the `devtools` package.
 
 ``` r
 # install.packages("devtools")
-#devtools::install_github("...")
+#devtools::install_github("HighDimenCDM")
 ```

@@ -2,7 +2,16 @@ Package: HighDimenCDM
 Type: Package
 Title: Stochastic EM Algorithm for High-Dimensional Cognitive Diagnosis Models
 Version: 0.1.0
-Authors@R: c(person(given = "Yuxuan", family = "Mei", role = c("aut", "cre"),email = "mei00060@umn.edu"))
+Authors@R: c(person(given = "Yuxuan", family = "Mei", role = c("aut", "cre"),
+    email = "mei00060@umn.edu"),
+    person(given = "Wenchao", family = "Ma", role = c("aut"),
+    email = "wma@umn.edu"),
+    person(given = "Kevin", family = "Wang", role = c("aut"),
+    email = "kaiyuanw@umich.edu"),
+    person(given = "Gongjun", family = "Xu", role = c("aut"),
+    email = "gongjun@umich.edu"))
+Author: Yuxuan Mei [aut, cre], Wenchao Ma [aut], Kevin Wang [aut], Gongjun Xu [aut]
+Maintainer: Yuxuan Mei <mei00060@umn.edu>
 Description: Provides stochastic expectation-maximization (stEM) algorithms for estimating high-dimensional cognitive diagnosis models. The package implements stochastic EM algorithms for cognitive diagnosis models with a large number of attributes. It includes estimation functions and example datasets for model fitting and analysis.
 License: GPL-3
 LazyData: TRUE
@@ -14,4 +23,4 @@ LinkingTo: Rcpp, RcppArmadillo
 Encoding: UTF-8
 NeedsCompilation: yes
 Config/roxygen2/version: 8.0.0
-RoxygenNote: 7.3.3
+RoxygenNote: 8.0.0

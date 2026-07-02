@@ -14,16 +14,6 @@
 #'
 #' @author Yuxuan Mei, The University of Minnesota, \email{mei00060@umn.edu}
 #'
-#' @examples
-#' \dontrun{
-#' data(IPIP)
-#' str(IPIP)
-#' fit <- autoGDINA.stEM(
-#'   dat = IPIP$dat,
-#'   Q = IPIP$Q
-#'   )
-#'}
-#'
 #' @references
 #'
 #' Johnson, J. A. (2014). Measuring thirty facets of the five factor model with a 120-item  public domain inventory: Development of the ipip-neo-120. Journal of Research in  Personality, 51, 78–89.

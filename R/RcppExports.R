@@ -2,22 +2,22 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 seqGibbs <- function(alpha, Q, ip, data, rp) {
-    .Call('_HighDimenCDM_seqGibbs', PACKAGE = 'HighDimenCDM', alpha, Q, ip, data, rp)
+    .Call(`_HighDimenCDM_seqGibbs`, alpha, Q, ip, data, rp)
 }
 
 seqGibbs2 <- function(alpha, Q, ip, data, rp) {
-    invisible(.Call('_HighDimenCDM_seqGibbs2', PACKAGE = 'HighDimenCDM', alpha, Q, ip, data, rp))
+    invisible(.Call(`_HighDimenCDM_seqGibbs2`, alpha, Q, ip, data, rp))
 }
 
 aggregatebyCol <- function(x, g) {
-    .Call('_HighDimenCDM_aggregatebyCol', PACKAGE = 'HighDimenCDM', x, g)
+    .Call(`_HighDimenCDM_aggregatebyCol`, x, g)
 }
 
 inplaceadd <- function(x) {
-    invisible(.Call('_HighDimenCDM_inplaceadd', PACKAGE = 'HighDimenCDM', x))
+    invisible(.Call(`_HighDimenCDM_inplaceadd`, x))
 }
 
 fieldtest <- function(x) {
-    .Call('_HighDimenCDM_fieldtest', PACKAGE = 'HighDimenCDM', x)
+    .Call(`_HighDimenCDM_fieldtest`, x)
 }
 

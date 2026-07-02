@@ -12,7 +12,7 @@ A list of responses and Q-matrix with components:
 }
 }
 \usage{
-IPIP
+data(IPIP)
 }
 \description{
 The IPIP-NEO-120 data are based on the public-domain personality inventory
@@ -21,17 +21,6 @@ developed from the International Personality Item Pool (IPIP; Johnson, 2014).
 \details{
 The data consist of responses from 4271 participants to 120 dichotomized items
 and the corresponding Q-matrix relating the 120 items to 30 personality facets.
-}
-\examples{
-\dontrun{
-data(IPIP)
-str(IPIP)
-fit <- autoGDINA.stEM(
-  dat = IPIP$dat,
-  Q = IPIP$Q
-  )
-}
-
 }
 \references{
 Johnson, J. A. (2014). Measuring thirty facets of the five factor model with a 120-item  public domain inventory: Development of the ipip-neo-120. Journal of Research in  Personality, 51, 78–89.

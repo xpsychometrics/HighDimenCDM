@@ -51,7 +51,7 @@ kernel <- function(dat,Q,J,reduced.profiles,alpha,B,ip.only=TRUE){
         }
 
       }else{
-        lg <- c(GDINA:::matchMatrix(t(reduced.profiles[[j]]),t(alpha[col.loc,])))
+        lg <- c(gdina_match_matrix(t(reduced.profiles[[j]]),t(alpha[col.loc,])))
         if(length(unique(lg))!=ncol(reduced.profiles[[j]])){
           temp <- aggregate(dat[j,],list(lg),mean,na.rm = TRUE)
           item.parm[[j]] <- rep(0.5,ncol(reduced.profiles[[j]]))
@@ -71,7 +71,7 @@ kernel <- function(dat,Q,J,reduced.profiles,alpha,B,ip.only=TRUE){
 
     ip[[b]] <- unlist(item.parm)
     # alpha sampling
-    alpha <- seqGibbs(alpha,Q,GDINA:::l2m(item.parm),dat,reduced.profiles)
+    alpha <- seqGibbs(alpha,Q,gdina_l2m(item.parm),dat,reduced.profiles)
     if(!ip.only){
       a[[b]] <- alpha
     }

@@ -12,7 +12,7 @@ A list of responses and Q-matrix with components:
 }
 }
 \usage{
-Tan2023
+data(Tan2023)
 }
 \description{
 In this study, we analyze the responses of 719 college students
@@ -28,7 +28,7 @@ measure four attributes: alcohol-related problems, anxiety, hostility, and depre
 \dontrun{
 data(Tan2023)
 str(Tan2023)
-fit <- autoGDINA.stEM(
+fit <- stEM(
   dat = Tan2023$dat,
   Q = Tan2023$Q
   )

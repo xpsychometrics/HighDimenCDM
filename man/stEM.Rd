@@ -12,7 +12,8 @@ stEM(
   eps1 = 2,
   eps2 = 0.4,
   frac1 = 0.1,
-  frac2 = 0.5
+  frac2 = 0.5,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ stEM(
 \item{frac1}{Proportion of the first part of the Markov chain used in the Geweke diagnostic.}
 
 \item{frac2}{Proportion of the last part of the Markov chain used in the Geweke diagnostic.}
+
+\item{verbose}{Logical; if TRUE, prints progress messages during the estimation process.}
 }
 \value{
 a list with elements

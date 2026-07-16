@@ -11,6 +11,7 @@ utils::globalVariables("AlphaPattern")
 #' @param eps2 A positive convergence criterion used after the burn-in.
 #' @param frac1 Proportion of the first part of the Markov chain used in the Geweke diagnostic.
 #' @param frac2 Proportion of the last part of the Markov chain used in the Geweke diagnostic.
+#' @param verbose Logical; if TRUE, prints progress messages during the estimation process.
 #'
 #' @return a list with elements
 #' \describe{
@@ -35,7 +36,7 @@ utils::globalVariables("AlphaPattern")
 #'@export
 
 stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
-                           eps1=2,eps2=0.4,frac1=.1,frac2=.5){
+                           eps1=2,eps2=0.4,frac1=.1,frac2=.5,verbose=FALSE){
 
   dat0 <- as.matrix(dat)
   Q0 <- as.matrix(Q)
@@ -99,10 +100,10 @@ stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
   burn.in.size <- 0
   # ip.output <- matrix(NA,nrow = npar,ncol = maxitr)
   # the initial MxB iterations
-  cat("\nBurn-in phase:")
+  if(verbose) cat("\nBurn-in phase:")
   for(m in 1:M){
 
-    cat("\n  # of batch = ",m," with batch size of ", B)
+    if(verbose) cat("\n  # of batch = ",m," with batch size of ", B)
 
     x <- kernel(dat,Q,J,reduced.profiles,alpha,B,ip.only=F)
 
@@ -122,7 +123,7 @@ stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
     #m<=60 means at most 50 batch (50x20=1000 iterations) will be burn-in; 10 batch or 200 iterations will be kept
     ## additional runs for burn-in?
     if(m>M){
-      cat("\n  # of batch = ",m," sum z^2 / npar = ",sum(z^2)/npar, "eps 1 criterion = ",eps1)
+      if(verbose) cat("\n  # of batch = ",m," sum z^2 / npar = ",sum(z^2)/npar, "eps 1 criterion = ",eps1)
     }
 
     x <- kernel(dat,Q,J,reduced.profiles,alpha,B,ip.only=F)
@@ -142,13 +143,13 @@ stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
     m <- m+1 #number of batch
   }
   total.number.of.batch <- m
-  cat("\n End of Burn-in phase summary:")
+  if(verbose) cat("\n End of Burn-in phase summary:")
   if(sum(z^2)/length(z)<eps1){
-    cat("\n  burn-in ends because sum z^2 / npar = ",sum(z^2)/length(z),"< eps 1 criterion = ",eps1)
+    if(verbose) cat("\n  burn-in ends because sum z^2 / npar = ",sum(z^2)/length(z),"< eps 1 criterion = ",eps1)
   }else{
-    cat("\n burn-in ends because total # of batch = ",total.number.of.batch,">= max allowed = 60")
+    if(verbose) cat("\n burn-in ends because total # of batch = ",total.number.of.batch,">= max allowed = 60")
   }
-  cat("\n Total burn-in iterations = ",burn.in.size)
+  if(verbose) cat("\n Total burn-in iterations = ",burn.in.size)
 
 
   ## ------------------------------------------------------------
@@ -157,10 +158,10 @@ stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
 
   n <- M #M=10 batch kept
   d.hat <- batch.var(plist,n=n)
-  cat("\nAfter burn-in phase:")
+  if(verbose) cat("\nAfter burn-in phase:")
   while(max(d.hat*N)>=eps2&&n<50){
     #n<=50 means adding at most 40 batch, resulting at most 50 batches or 1000 iterations
-    cat("\n  # of valid batch after burn-in = ",n," max delta hat = ",max(d.hat)*N, "eps 2 criterion = ",eps2)
+    if(verbose) cat("\n  # of valid batch after burn-in = ",n," max delta hat = ",max(d.hat)*N, "eps 2 criterion = ",eps2)
     n <- n+1
 
     x <- kernel(dat,Q,J,reduced.profiles,alpha,B,ip.only=F)
@@ -171,9 +172,9 @@ stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
 
     d.hat <- batch.var(plist,n=n)
   }
-  cat("\n  # of valid batch after burn in = ",n," max delta hat = ",max(d.hat)*N, " criterion = ",eps2)
+  if(verbose) cat("\n  # of valid batch after burn in = ",n," max delta hat = ",max(d.hat)*N, " criterion = ",eps2)
 
-  cat("\nLenth of final MC chain = ",n*B)
+  if(verbose) cat("\nLenth of final MC chain = ",n*B)
   total.number.of.batch <- total.number.of.batch + n - M
 
   phat <- rowMeans(Reduce(cbind,plist))
@@ -181,7 +182,18 @@ stEM <- function(dat, Q, item.parm = NULL, maxitr = 100,
   list.alpha <- do.call(c,alist)
   est.alpha2 <- t(Reduce("+",list.alpha))/length(list.alpha)
 
-  return(list(catprob.parm=x$item.parm,ip=phat,alpha=1 * (est.alpha2 > 0.5),alpha.list=alist,total.number.of.batch=total.number.of.batch,
-              final.chain=n*B,burn.in.size=burn.in.size,plist=plist))
+  ret <- list(catprob.parm=x$item.parm,ip=phat,alpha=1 * (est.alpha2 > 0.5),alpha.list=alist,total.number.of.batch=total.number.of.batch,
+              final.chain=n*B,burn.in.size=burn.in.size,plist=plist)
 
+  class(ret) <- "stEM"
+  invisible(ret)
+
+}
+
+#'@export
+print.stEM <- function(x, ...){
+  cat("\n stEM: Stochastic EM Algorithm for High-Dimensional Cognitive Diagnosis Models\n")
+  cat("\n Total number of retained batches = ",x$total.number.of.batch)
+  cat("\n Length of final Markov chain = ",x$final.chain)
+  cat("\n Number of burn-in iterations discarded = ",x$burn.in.size)
 }

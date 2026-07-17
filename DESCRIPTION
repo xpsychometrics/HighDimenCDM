@@ -22,4 +22,5 @@ Suggests:
 LinkingTo: Rcpp, RcppArmadillo
 Encoding: UTF-8
 NeedsCompilation: yes
-Config/roxygen2/version: 8.0.0.9000
+Config/roxygen2/version: 8.0.0
+RoxygenNote: 8.0.0

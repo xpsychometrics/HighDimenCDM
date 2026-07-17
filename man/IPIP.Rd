@@ -12,7 +12,7 @@ A list of responses and Q-matrix with components:
 }
 }
 \usage{
-data(IPIP)
+IPIP
 }
 \description{
 The IPIP-NEO-120 data are based on the public-domain personality inventory

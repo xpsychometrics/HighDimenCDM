@@ -13,7 +13,7 @@ A list with components:
 }
 }
 \usage{
-data(simN2000K10)
+simN2000K10
 }
 \description{
 Simulated responses for 2000 examinees generated with the script in

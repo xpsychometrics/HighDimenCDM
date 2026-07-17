@@ -27,7 +27,7 @@ utils::globalVariables("AlphaPattern")
 #'
 #'
 #' @examples
-#'\dontrun{
+#'\donttest{
 #' dat <- simN2000K20$data
 #' Q <- simN2000K20$Q
 #' fit <- stEM(dat = dat, Q = Q)

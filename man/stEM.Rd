@@ -52,7 +52,7 @@ a list with elements
 Estimates model parameters for cognitive diagnosis models using the stochastic expectation-maximization (stEM) algorithm with sequential Gibbs sampling.
 }
 \examples{
-\dontrun{
+\donttest{
 dat <- simN2000K20$data
 Q <- simN2000K20$Q
 fit <- stEM(dat = dat, Q = Q)

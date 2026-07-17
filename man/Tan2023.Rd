@@ -12,7 +12,7 @@ A list of responses and Q-matrix with components:
 }
 }
 \usage{
-data(Tan2023)
+Tan2023
 }
 \description{
 In this study, we analyze the responses of 719 college students
@@ -25,7 +25,7 @@ The data were previously analyzed in Tan et al. (2022). The items
 measure four attributes: alcohol-related problems, anxiety, hostility, and depression.
 }
 \examples{
-\dontrun{
+\donttest{
 data(Tan2023)
 str(Tan2023)
 fit <- stEM(

@@ -3,7 +3,9 @@
 S3method(print,stEM)
 export(stEM)
 importFrom(Rcpp,evalCpp)
-importFrom(stats,aggregate)
-importFrom(stats,runif)
+importFrom(stats,
+  aggregate,
+  runif
+)
 importFrom(utils,getFromNamespace)
 useDynLib(HighDimenCDM, .registration = TRUE)

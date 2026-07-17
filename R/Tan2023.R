@@ -17,7 +17,7 @@
 #' @author Yuxuan Mei, The University of Minnesota, \email{mei00060@umn.edu}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(Tan2023)
 #' str(Tan2023)
 #' fit <- stEM(

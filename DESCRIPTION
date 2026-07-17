@@ -12,7 +12,7 @@ Authors@R: c(person(given = "Yuxuan", family = "Mei", role = c("aut", "cre"),
     email = "gongjun@umich.edu"))
 Author: Yuxuan Mei [aut, cre], Wenchao Ma [aut], Kevin Wang [aut], Gongjun Xu [aut]
 Maintainer: Yuxuan Mei <mei00060@umn.edu>
-Description: Provides stochastic expectation-maximization (stEM) algorithms for estimating high-dimensional cognitive diagnosis models. The package implements stochastic EM algorithms for cognitive diagnosis models with a large number of attributes. It includes estimation functions and example datasets for model fitting and analysis.
+Description: Provides stochastic expectation-maximization (stEM) algorithms for estimating high-dimensional cognitive diagnosis models. The package implements stochastic EM algorithms for cognitive diagnosis models with a large number of attributes. It includes estimation functions and example datasets for model fitting and analysis. The methods are described in Ma, W., Wang, K., and Xu, G. (Accepted). "Parameter estimation of cognitive diagnosis models with stochastic EM algorithm." Behaviometrika.
 License: GPL-3
 LazyData: TRUE
 Depends: 
@@ -22,5 +22,4 @@ Suggests:
 LinkingTo: Rcpp, RcppArmadillo
 Encoding: UTF-8
 NeedsCompilation: yes
-Config/roxygen2/version: 8.0.0
-RoxygenNote: 8.0.0
+Config/roxygen2/version: 8.0.0.9000
